@@ -1,0 +1,14 @@
+
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: my-mongodb-customer
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: mymongocustomer
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo_data:/data/db
+volumes:
+  mongo_data:

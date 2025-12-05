@@ -1,19 +1,28 @@
 spring:
+  data:
+    mongodb:
+      host: localhost
+      port: 27017
+      database: mymongocustomer
+
   security:
     oauth2:
       client:
         registration:
           cognito:
-            client-id: 4ebn50sdhoti6amiqjhngloulk
+            client-id: 7pj16tf02bsu6uchre2mbtat4m
             scope : openid,email,profile
             redirect-uri: "http://localhost:8080/login/oauth2/code/cognito"
             authorization-grant-type: authorization_code
         provider:
           cognito:
-            issuer-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_OvNBEOInQ
+            issuer-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_axv3YQY80
 
       resourceserver:
         jwt:
-          issuer-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_OvNBEOInQ
+          issuer-uri: https://cognito-idp.us-east-1.amazonaws.com/us-east-1_axv3YQY80
+#logging:
+#  level:
+#    root: debug
 
 
