@@ -1,12 +1,13 @@
 name: Docker Image
 
-permissions:
-  contents: read
-  packages: write
 on:
   push:
     branches:
       - main
+
+permissions:
+  contents: read
+  packages: write
 
 jobs:
   build-and-push:
@@ -30,7 +31,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build and Push Image with Jib
-        run: mvn -B compile jib:build -Dimage=ghcr.io/${{ github.repository_owner }}/${{ github.event.repository.name }}:latest \
+        run: mvn -B compile jib:build -Dimage=ghcr.io/${{ github.repository_owner }}/customer-api-backened:latest \
           -Djib.to.auth.username=${{ github.actor }} \
           -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }}
 
