@@ -31,10 +31,11 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build Docker image with Jib
-        run: mvn clean compile jib:build \
-          -Djib.to.image=ghcr.io/deftsquad/customer_api_backend:latest \
-          -Djib.to.auth.username=${{ github.actor }} \
-          -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }}
+        run: |
+          mvn clean jib:build \
+            -Djib.to.image=ghcr.io/deftsquad/jwt-validator:latest \
+            -Djib.to.auth.username=${{ github.actor }} \
+            -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }}
 
 #
 #      - name: Setup AWS Credentials
