@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: jwtvalidator-deployment
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: jwtvalidator
+  template:
+    metadata:
+      labels:
+        app: jwtvalidator
+    spec:
+      containers:
+        - name: jwtvalidator
+          image: ghcr.io/deftsquad/jwtvalidator:latest
+          ports:
+            - containerPort: 8080

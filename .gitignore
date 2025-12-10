@@ -34,4 +34,4 @@ build/
 
 terraform/*
 
-k8s/*
+
