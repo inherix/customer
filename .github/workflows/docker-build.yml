@@ -37,30 +37,19 @@ jobs:
             -Djib.to.auth.username=${{ github.actor }} \
             -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }}
 
-#
-#      - name: Setup AWS Credentials
-#        uses: aws-actions/configure-aws-credentials@v4
-#        with:
-#           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
-#           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-#           aws-region: us-east-1
 
-#      - name: Install Terraform
-#        uses: hashicorp/setup-terraform@v3
-#
-#      - name: Terraform Init
-#        working-directory: ./terraform
-#        run: terraform init
-#
-#      - name: Terraform Apply
-#        working-directory: ./terraform
-#        run: terraform apply -auto-approve -var-file="dev.tfvars"
+      - name: Setup AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+           aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+           aws-region: us-east-1
 
-#      - name: Update Kubeconfig
-#        run: aws eks update-kubeconfig --region us-east-1 --name customer-api-dev
-#
-#      - name: Deploy to EKS
-#        run: |
-#          kubectl apply -f terraform/kubernetes/deployment.yaml
-#          kubectl apply -f terraform/kubernetes/service.yaml
+      - name: Update Kubeconfig
+        run: aws eks update-kubeconfig --region us-east-1 --name inherix-dev
+
+      - name: Deploy to EKS
+        run: |
+          kubectl apply -f terraform/kubernetes/deployment.yaml
+          kubectl apply -f terraform/kubernetes/service.yaml
   
