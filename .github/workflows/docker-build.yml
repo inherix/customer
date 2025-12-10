@@ -32,7 +32,7 @@ jobs:
 
       - name: Build Docker image with Jib
         run: |
-          mvn clean jib:build \
+          mvn clean package jib:build \
             -Djib.to.image=ghcr.io/deftsquad/jwt-validator:latest \
             -Djib.to.auth.username=${{ github.actor }} \
             -Djib.to.auth.password=${{ secrets.GITHUB_TOKEN }}
