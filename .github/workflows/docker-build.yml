@@ -35,7 +35,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GHCR_TOKEN }}
         run: |
          mvn clean compile jib:build \
-           -Dimage=ghcr.io/${GITHUB_USERNAME}/jwt-validator:latest \
+           -Dimage=ghcr.io/${GITHUB_USERNAME}/jwt-validator:1.0.1 \
            -Djib.to.auth.username=${GITHUB_USERNAME} \
            -Djib.to.auth.password=${GITHUB_TOKEN}
 
