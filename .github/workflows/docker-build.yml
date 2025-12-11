@@ -37,7 +37,7 @@ jobs:
          mvn clean compile jib:build \
            -Dimage=ghcr.io/${GITHUB_USERNAME}/jwt-validator:latest \
            -Djib.to.auth.username=${GITHUB_USERNAME} \
-           -Djib.to.auth.password=${GHCR_TOKEN}
+           -Djib.to.auth.password=${GITHUB_TOKEN}
 
 #      - name: Setup AWS Credentials
 #        uses: aws-actions/configure-aws-credentials@v4
