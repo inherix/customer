@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: jwtvalidator
-          image: ghcr.io/deftsquad/jwtvalidator:latest
+          image: ghcr.io/deftsquad/jwt-validator:latest
           ports:
             - containerPort: 8080
       imagePullSecrets:
