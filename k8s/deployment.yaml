@@ -17,5 +17,8 @@ spec:
           image: ghcr.io/deftsquad/jwt-validator:latest
           ports:
             - containerPort: 8080
+          env:
+            - name: SERVER_PORT
+              value: "8081"
       imagePullSecrets:
         - name: ghcr-secret
