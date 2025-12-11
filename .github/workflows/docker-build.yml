@@ -16,6 +16,8 @@ jobs:
     env:
       IMAGE_NAME: jwt-validator
       GHCR_REGISTRY: ghcr.io
+      GHCR_IMAGE: ghcr.io/deftsquad/jwt-validator
+      IMAGE_TAG: ${{ github.sha }}
       AWS_REGION: us-east-1
       EKS_CLUSTER_NAME: inherix-dev
 
@@ -33,9 +35,10 @@ jobs:
         env:
           GITHUB_USERNAME: ${{ github.actor }}
           GITHUB_TOKEN: ${{ secrets.GHCR_TOKEN }}
+          IMAGE_TAG: ${{ github.sha }}
         run: |
          mvn clean compile jib:build \
-           -Dimage=ghcr.io/${GITHUB_USERNAME}/jwt-validator:1.0.1 \
+           -Dimage=${{ env.GHCR_IMAGE }}:${{ env.IMAGE_TAG }} \
            -Djib.to.auth.username=${GITHUB_USERNAME} \
            -Djib.to.auth.password=${GITHUB_TOKEN}
 
@@ -56,9 +59,13 @@ jobs:
               --docker-username=${{ github.actor }} \
               --docker-password=${{ secrets.GHCR_TOKEN }} \
               --dry-run=client -o yaml | kubectl apply -f -
+      - name: Update Deployment with new image
+        run: |
+          kubectl set image deployment/jwtvalidator-deployment \
+          jwtvalidator=${{ env.GHCR_IMAGE }}:${{ env.IMAGE_TAG }}    
 
       - name: Deploy to EKS
         run: |
-          kubectl apply -f k8s/deployment.yaml
+#          kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
   
