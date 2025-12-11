@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
         - name: jwtvalidator
-          image: ghcr.io/deftsquad/jwt-validator:latest
+          image: ghcr.io/deftsquad/jwt-validator:1.0.1
           ports:
             - containerPort: 8080
           env:
