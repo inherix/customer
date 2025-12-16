@@ -16,7 +16,7 @@ jobs:
     env:
       IMAGE_NAME: jwt-validator
       GHCR_REGISTRY: ghcr.io
-      GHCR_IMAGE: ghcr.io/deftsquad/jwt-validator
+      GHCR_IMAGE: ghcr.io/inherix/customer/jwt-validator
       IMAGE_TAG: ${{ github.sha }}
       AWS_REGION: us-east-1
       EKS_CLUSTER_NAME: inherix-dev

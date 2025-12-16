@@ -14,11 +14,9 @@ spec:
     spec:
       containers:
         - name: jwtvalidator
-          image: ghcr.io/deftsquad/jwt-validator:1.0.1
+          image: ghcr.io/inherix/customer/jwt-validator:1.0.1
           ports:
             - containerPort: 8080
-          env:
-            - name: SERVER_PORT
-              value: "8081"
+
       imagePullSecrets:
         - name: ghcr-secret
