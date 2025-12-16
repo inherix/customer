@@ -58,14 +58,15 @@ jobs:
               --docker-server=ghcr.io \
               --docker-username=${{ github.actor }} \
               --docker-password=${{ secrets.GHCR_TOKEN }} \
-              --dry-run=client -o yaml | kubectl apply -f -
-      - name: Update Deployment with new image
-        run: |
-          kubectl set image deployment/jwtvalidator-deployment \
-          jwtvalidator=${{ env.GHCR_IMAGE }}:${{ env.IMAGE_TAG }}    
+              --dry-run=client -o yaml | kubectl apply -f -   
 
       - name: Deploy to EKS
         run: |
           kubectl apply -f k8s/deployment.yaml
           kubectl apply -f k8s/service.yaml
+
+      - name: Update Deployment with new image
+        run: |
+          kubectl set image deployment/jwtvalidator-deployment \
+          jwtvalidator=${{ env.GHCR_IMAGE }}:${{ env.IMAGE_TAG }}     
   
